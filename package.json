@@ -16,7 +16,9 @@
     "docs": "npx quartz build --serve -d docs",
     "check": "tsc --noEmit && npx prettier . --check",
     "format": "npx prettier . --write",
-    "test": "tsx --test",
+    "test": "tsx --test 'quartz/**/*.test.ts'",
+    "test:integration": "tsx --test integration/**/*.test.ts",
+    "test:integration:prod": "BASE_URL=https://skryl.github.io/blog tsx --test integration/**/*.test.ts",
     "profile": "0x -D prof ./quartz/bootstrap-cli.mjs build --concurrency=1"
   },
   "engines": {
