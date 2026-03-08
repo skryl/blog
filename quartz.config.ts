@@ -3,7 +3,7 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Origin",
+    pageTitle: "The Pond",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -14,8 +14,11 @@ const config: QuartzConfig = {
     defaultDateType: "published",
     navbar: {
       pages: [
+        { title: "About me", slug: "/about" },
+        { title: "My research", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Tags", slug: "/tags" },
+        { title: "Open source", slug: "/open-source" },
+        { title: "Subscribe", slug: "/subscribe" },
       ],
     },
     theme: {

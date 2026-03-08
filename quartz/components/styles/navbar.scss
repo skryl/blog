@@ -17,6 +17,18 @@
   width: 100%;
 }
 
+.navbar-logo {
+  display: block;
+  background: none !important;
+}
+
+.navbar-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  image-rendering: pixelated;
+}
+
 #navbar-left .page-title {
   font-size: 1.75rem;
   margin: 0;
@@ -171,6 +183,10 @@
     flex-direction: row;
     width: auto;
     gap: 0.75rem;
+  }
+
+  .navbar-logo {
+    display: none;
   }
 
   #navbar-left .page-title {

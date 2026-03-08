@@ -1,0 +1,24 @@
+.sequence-nav {
+  .sequence-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+
+    svg {
+      flex-shrink: 0;
+      color: var(--darkgray);
+    }
+
+    a {
+      font-weight: 700;
+    }
+  }
+
+  .sequence-link {
+    font-size: 0.9rem;
+    color: var(--darkgray);
+    margin-top: 0.35rem;
+  }
+}

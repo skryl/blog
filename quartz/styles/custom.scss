@@ -114,9 +114,12 @@ a.tag-link {
   text-align: center;
 }
 
-// -- Content meta (dates, reading time) --
-.content-meta {
-  opacity: 0.75;
+// -- Sidebar card shared style --
+.sidebar-card {
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 0.75rem;
   font-size: 0.9rem;
 }
 
@@ -156,13 +159,6 @@ footer {
 // -- Backlinks in right sidebar --
 .backlinks {
   font-size: 0.9rem;
-  margin-top: 1rem;
-
-  & h3 {
-    font-size: 1rem;
-    border-bottom: none;
-    padding-bottom: 0;
-  }
 }
 
 // -- Scrollbar styling matching theme --

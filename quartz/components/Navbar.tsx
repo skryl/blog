@@ -47,6 +47,9 @@ export default ((userOpts?: Partial<NavbarOptions>) => {
     return (
       <div class={classNames(displayClass, "navbar")} id="navbar">
         <div id="navbar-left">
+          <a href={baseDir} class="internal navbar-logo">
+            <img src={`${baseDir}/static/pond.png`} alt="The Pond" class="navbar-image" />
+          </a>
           <h2 class="page-title">
             <a href={baseDir} class="internal">
               {title}

@@ -23,8 +23,11 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.Navbar({
       pages: [
+        { title: "About me", slug: "/about" },
+        { title: "My research", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Tags", slug: "/tags" },
+        { title: "Open source", slug: "/open-source" },
+        { title: "Subscribe", slug: "/subscribe" },
       ],
     }),
     Component.Search(),
@@ -32,6 +35,8 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.SequenceNav(),
+    Component.TagsSidebar(),
     Component.ContentMeta(),
     Component.Backlinks(),
   ],
@@ -43,8 +48,11 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.Navbar({
       pages: [
+        { title: "About me", slug: "/about" },
+        { title: "My research", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Tags", slug: "/tags" },
+        { title: "Open source", slug: "/open-source" },
+        { title: "Subscribe", slug: "/subscribe" },
       ],
     }),
     Component.Search(),
