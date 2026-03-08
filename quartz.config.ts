@@ -3,7 +3,7 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "The Pond",
+    pageTitle: "Origin",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -12,6 +12,12 @@ const config: QuartzConfig = {
     baseUrl: "skryl.github.io/blog",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "published",
+    navbar: {
+      pages: [
+        { title: "All posts", slug: "/posts" },
+        { title: "Tags", slug: "/tags" },
+      ],
+    },
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -22,25 +28,25 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#eff1f5",
-          lightgray: "#dce0e8",
+          light: "#fcfcff",
+          lightgray: "#e6e9ef",
           gray: "#9ca0b0",
           darkgray: "#4c4f69",
           dark: "#303446",
           secondary: "#3e6ccb",
           tertiary: "#22820d",
-          highlight: "rgba(62, 108, 203, 0.12)",
+          highlight: "rgba(62, 108, 203, 0.10)",
           textHighlight: "#df8e1d55",
         },
         darkMode: {
-          light: "#303446",
-          lightgray: "#414559",
+          light: "#12141e",
+          lightgray: "#2a2d3d",
           gray: "#737994",
-          darkgray: "#c6d0f5",
+          darkgray: "#d6deff",
           dark: "#e2e4ef",
           secondary: "#8caaee",
           tertiary: "#a6d189",
-          highlight: "rgba(140, 170, 238, 0.12)",
+          highlight: "rgba(140, 170, 238, 0.10)",
           textHighlight: "#e5c890aa",
         },
       },
@@ -55,13 +61,13 @@ const config: QuartzConfig = {
       Plugin.SyntaxHighlighting({
         theme: {
           light: "github-light",
-          dark: "one-dark-pro",
+          dark: "github-dark",
         },
         keepBackground: false,
       }),
-      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: false }),
+      Plugin.ObsidianFlavoredMarkdown({ enableInHtmlEmbed: true }),
       Plugin.GitHubFlavoredMarkdown(),
-      Plugin.TableOfContents(),
+      Plugin.TableOfContents({ minEntries: 3 }),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),

@@ -1,25 +1,36 @@
 @use "./base.scss";
 
-// Turntrout-inspired scholarly theme customizations
+// ============================================================
+// Turntrout.com-inspired scholarly theme
+// ============================================================
 
-// Larger, more elegant body text
+// -- Typography --
 html {
   font-size: 19px;
+  text-rendering: geometricprecision;
 }
 
-// Article content styling
+body {
+  line-height: 1.8rem;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  hyphens: none;
+}
+
+// -- Content width --
 .center {
   max-width: 750px;
 }
 
-// Refined header styling with serif elegance
+// -- Headings --
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -39,21 +50,23 @@ h3 {
   font-size: 1.3rem;
 }
 
-// Drop cap on first paragraph of articles
+// -- Drop cap on first paragraph --
 article > .article-content > p:first-of-type::first-letter {
-  font-size: 3.4em;
+  font-size: 3.95rem;
   float: left;
   line-height: 0.8;
   margin-right: 0.08em;
-  padding-top: 0.07em;
+  padding-top: 0.15rem;
   font-weight: 600;
   color: var(--secondary);
+  min-height: 4.2rem;
 }
 
-// Smoother link styling
+// -- Links --
 a {
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-underline-offset: 2.5px;
+  overflow-wrap: break-word;
   transition: color 0.2s ease;
 
   &:hover {
@@ -61,17 +74,17 @@ a {
   }
 }
 
-// Blockquote styling — scholarly feel
+// -- Blockquotes --
 blockquote {
   border-left: 3px solid var(--secondary);
   padding-left: 1.2rem;
   font-style: italic;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
-// Code block refinements
+// -- Code blocks --
 pre {
-  border-radius: 6px;
+  border-radius: 5px;
   border: 1px solid var(--lightgray);
 }
 
@@ -79,39 +92,170 @@ code {
   font-size: 0.88em;
 }
 
-// Tag styling
+// -- Images --
+img {
+  max-width: 87.5%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+// -- Tag links --
 a.tag-link {
   border-radius: 12px;
   padding: 2px 10px;
   font-size: 0.85rem;
 }
 
-// Page title styling
+// -- Page title in sidebar --
 .page-title {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  text-align: center;
 }
 
-// Content meta (dates, reading time) — subtle
+// -- Content meta (dates, reading time) --
 .content-meta {
-  opacity: 0.7;
+  opacity: 0.75;
   font-size: 0.9rem;
 }
 
-// Explorer sidebar refinements
+// -- Explorer --
 .explorer {
   font-size: 0.95rem;
 }
 
-// Footer styling
+// -- Footer --
 footer {
   opacity: 0.7;
   font-size: 0.85rem;
 }
 
-// Smooth transitions for dark/light mode
-body {
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+// -- Right sidebar --
+.sidebar.right {
+  padding-left: 1rem;
+
+  @media all and (max-width: 1304px) {
+    padding-left: 0;
+  }
+}
+
+// -- Table of contents in right sidebar --
+.toc {
+  font-size: 0.9rem;
+
+  & .depth-0 {
+    font-weight: 600;
+  }
+
+  & ul {
+    padding-left: 1rem;
+  }
+}
+
+// -- Backlinks in right sidebar --
+.backlinks {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+
+  & h3 {
+    font-size: 1rem;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+// -- Scrollbar styling matching theme --
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lightgray);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--gray);
+  }
+}
+
+// -- Selection color --
+::selection {
+  background: color-mix(in srgb, var(--tertiary) 60%, rgba(255, 255, 255, 0));
+}
+
+// -- Lists --
+li {
+  padding-left: 0.25rem;
+}
+
+li::marker {
+  color: var(--gray);
+}
+
+// -- Horizontal rules --
+hr {
+  border: none;
+  height: 1px;
+  background: var(--lightgray);
+  margin: 2rem auto;
+}
+
+// -- Tables --
+th {
+  font-weight: 600;
+}
+
+// -- Mobile adjustments --
+@media all and (max-width: 800px) {
+  html {
+    font-size: 17px;
+  }
+
+  .page {
+    & > #quartz-body {
+      & .sidebar.left {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--light);
+        border-bottom: 1px solid var(--lightgray);
+        padding: 0;
+        height: auto;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  article > .article-content > p:first-of-type::first-letter {
+    font-size: 3.2rem;
+    min-height: 3.4rem;
+  }
+}
+
+// -- Tablet adjustments --
+@media all and (min-width: 800px) and (max-width: 1304px) {
+  .sidebar.right {
+    flex-direction: column;
+
+    & > .toc {
+      display: block;
+    }
+  }
 }

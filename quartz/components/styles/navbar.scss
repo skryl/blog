@@ -1,0 +1,244 @@
+@use "../../styles/variables.scss" as *;
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+#navbar-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+#navbar-left .page-title {
+  font-size: 1.75rem;
+  margin: 0;
+  text-align: center;
+  font-family: var(--titleFont);
+}
+
+#navbar-left .page-title a {
+  color: var(--dark);
+  font-weight: 700;
+  background: none;
+  padding: 0;
+}
+
+#darkmode-span {
+  display: flex;
+  align-items: center;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--darkgray);
+  transition: fill 0.2s ease;
+}
+
+#theme-toggle svg:hover {
+  fill: var(--secondary);
+}
+
+:root[saved-theme="light"] #theme-toggle .dayIcon {
+  display: none;
+}
+:root[saved-theme="light"] #theme-toggle .nightIcon {
+  display: inline-block;
+}
+:root[saved-theme="dark"] #theme-toggle .dayIcon {
+  display: inline-block;
+}
+:root[saved-theme="dark"] #theme-toggle .nightIcon {
+  display: none;
+}
+
+#navbar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.menu ul li a {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--darkgray);
+  background: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.menu ul li a:hover,
+.menu ul li a.active {
+  background-color: var(--highlight);
+  color: var(--secondary);
+}
+
+#nav-searchbar {
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+
+#nav-searchbar .search-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 4px;
+  background: var(--light);
+  cursor: pointer;
+  color: var(--gray);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+#nav-searchbar .search-button:hover {
+  border-color: var(--secondary);
+}
+
+#nav-searchbar .search-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+#nav-searchbar .search-button .search-path {
+  stroke: var(--gray);
+  stroke-width: 2px;
+}
+
+#menu-button {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+#menu-button .bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--darkgray);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+// -- Mobile layout --
+@media all and ($mobile) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  }
+
+  #navbar-left {
+    flex-direction: row;
+    width: auto;
+    gap: 0.75rem;
+  }
+
+  #navbar-left .page-title {
+    font-size: 1.3rem;
+  }
+
+  #navbar-right {
+    flex-direction: row;
+    width: auto;
+    gap: 0.5rem;
+    align-items: center;
+    position: relative;
+  }
+
+  #nav-searchbar {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  #nav-searchbar .search-button {
+    border: none;
+    padding: 4px;
+    background: none;
+    width: auto;
+  }
+
+  #nav-searchbar .search-button p {
+    display: none;
+  }
+
+  #nav-searchbar .search-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #nav-searchbar .search-button .search-path {
+    stroke: var(--darkgray);
+  }
+
+  #menu-button {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--light);
+    border: 1px solid var(--lightgray);
+    border-radius: 6px;
+    padding: 0.5rem;
+    z-index: 100;
+    width: 200px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .menu.open {
+    display: block;
+  }
+
+  #menu-button[aria-expanded="true"] .bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+  #menu-button[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-button[aria-expanded="true"] .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+}
