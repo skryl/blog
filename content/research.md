@@ -18,6 +18,18 @@ A selection of my most recently active open source work. Most of it lives on [Gi
 
 **[rhdl](https://github.com/skryl/rhdl)** -- A hardware description language and simulator written in Ruby. Design digital circuits in a Ruby DSL, simulate them, synthesize to gate-level netlists, and export to Verilog. Includes browser-based simulation and example designs for the MOS 6502, Apple II, Game Boy, and RISC-V.
 
+## Bioinformatics
+
+**[genomekit](https://github.com/skryl/genomekit)** -- A genome analysis toolkit.
+
+## AI tools
+
+**[audible](https://github.com/skryl/audible)** -- An AI audiobook generator using the latest TTS models.
+
+## Hardware and simulation
+
+**[GEM](https://github.com/skryl/GEM/tree/metal)** -- An open-source RTL logic simulator with Metal acceleration. Fork of NVlabs/GEM ported from CUDA to Apple Metal, written in Rust with Verilog support.
+
 ## Developer tools
 
 **[herd](https://github.com/skryl/herd)** -- A Rust-based monitoring and control tool for steering Codex and Claude agent sessions running in tmux. Offers both a CLI and an interactive TUI for managing multiple concurrent AI coding sessions.
