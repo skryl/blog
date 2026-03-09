@@ -123,7 +123,16 @@ async function _navigate(url: URL, isBack: boolean = false) {
   // delay setting the url until now
   // at this point everything is loaded so changing the url should resolve to the correct addresses
   if (!isBack) {
-    history.pushState({}, "", url)
+    // Folder pages (slug ends with "index") need a trailing slash so that
+    // client-side relative URL resolution works correctly (e.g. "../about"
+    // from /blog/posts/ resolves to /blog/about, not /about)
+    const slug = html.body.dataset.slug ?? ""
+    const isFolder = slug.endsWith("index") || slug === ""
+    const pushUrl =
+      isFolder && !url.pathname.endsWith("/")
+        ? new URL(url.pathname + "/" + url.search + url.hash, url.origin)
+        : url
+    history.pushState({}, "", pushUrl)
   }
 
   notifyNav(getFullSlug(window))
