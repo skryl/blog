@@ -251,6 +251,66 @@ describe("Integration: Broken link checker", { timeout: 300_000 }, () => {
     }
   })
 
+  it("should have no broken links after SPA-style URL rebasing", async () => {
+    // Simulates what the SPA router's normalizeRelativeURLs does:
+    // For each page, extract relative hrefs and resolve them against the page URL
+    // WITHOUT a trailing slash (the common case during SPA navigation, since links
+    // like "../posts" resolve to "/blog/posts" not "/blog/posts/").
+    // This catches links that work in static HTML but break after SPA navigation
+    // (e.g., missing /blog/ prefix when deployed to a subdirectory).
+    const broken: { href: string; resolved: string; from: string }[] = []
+    const baseOrigin = new URL(BASE_URL).origin
+    const basePath = new URL(BASE_URL).pathname
+
+    for (const pageUrl of internalPages) {
+      try {
+        const res = await robustFetch(pageUrl)
+        if (!res.ok) continue
+        const contentType = res.headers.get("content-type") ?? ""
+        if (!contentType.includes("text/html")) continue
+        const html = await res.text()
+
+        // Extract raw relative hrefs (what normalizeRelativeURLs processes)
+        const relativeHrefRegex = /(<[^>]*?)href=["'](\.\/[^"']*|\.\.\/[^"']*|)["']/g
+        let match: RegExpExecArray | null
+        while ((match = relativeHrefRegex.exec(html)) !== null) {
+          const tagPrefix = match[1]
+          const href = match[2]
+          if (!href) continue
+          if (/rel=["'](preconnect|dns-prefetch|stylesheet)["']/.test(tagPrefix)) continue
+
+          // Simulate _rebaseHtmlElement WITHOUT trailing slash on the base URL.
+          // This is the worst case: SPA navigates to /blog/posts (no slash),
+          // and "../about" should still resolve to /blog/about, not /about.
+          const noTrailingSlash = pageUrl.replace(/\/+$/, "")
+          const rebased = new URL(href, noTrailingSlash)
+          const absolutePath = rebased.pathname
+
+          // After rebasing, the path should still be under the BASE_URL's path prefix
+          if (absolutePath.startsWith(basePath) || !absolutePath.startsWith("/")) continue
+
+          // This link escapes the base path — it will 404 on the deployed site
+          broken.push({
+            href,
+            resolved: `${baseOrigin}${absolutePath}`,
+            from: pageUrl,
+          })
+        }
+      } catch {
+        // Skip pages that error during extraction
+      }
+    }
+
+    if (broken.length > 0) {
+      const report = broken
+        .map((b) => `  ${b.href} -> ${b.resolved}\n       on page: ${b.from}`)
+        .join("\n")
+      assert.fail(
+        `Found ${broken.length} link(s) that escape the base path after SPA rebasing:\n${report}`,
+      )
+    }
+  })
+
   it("should have no external 404 links", async () => {
     const externalLinks = Array.from(allLinks.entries()).filter(
       ([url]) => !url.startsWith(BASE_URL),
