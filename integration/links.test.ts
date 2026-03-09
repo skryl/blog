@@ -279,11 +279,16 @@ describe("Integration: Broken link checker", { timeout: 300_000 }, () => {
           if (!href) continue
           if (/rel=["'](preconnect|dns-prefetch|stylesheet)["']/.test(tagPrefix)) continue
 
-          // Simulate _rebaseHtmlElement WITHOUT trailing slash on the base URL.
-          // This is the worst case: SPA navigates to /blog/posts (no slash),
-          // and "../about" should still resolve to /blog/about, not /about.
-          const noTrailingSlash = pageUrl.replace(/\/+$/, "")
-          const rebased = new URL(href, noTrailingSlash)
+          // Simulate _rebaseHtmlElement with the same logic as normalizeRelativeURLs:
+          // folder pages (data-slug ends with "index") get trailing slash,
+          // file pages do not. This matches how the SPA router resolves URLs.
+          const slugMatch = html.match(/data-slug="([^"]*)"/)
+          const slug = slugMatch ? slugMatch[1] : ""
+          const isFolder = slug.endsWith("index") || slug === ""
+          const base = isFolder
+            ? pageUrl.endsWith("/") ? pageUrl : pageUrl + "/"
+            : pageUrl.replace(/\/+$/, "")
+          const rebased = new URL(href, base)
           const absolutePath = rebased.pathname
 
           // After rebasing, the path should still be under the BASE_URL's path prefix

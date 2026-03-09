@@ -115,10 +115,16 @@ const _rebaseHtmlElement = (el: Element, attr: string, newBase: string | URL) =>
   el.setAttribute(attr, rebased.pathname + rebased.hash)
 }
 export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
-  // Ensure the base URL ends with a trailing slash for correct relative resolution.
-  // Without it, "posts" is treated as a file, so "../" resolves one level too high.
   const baseUrl = typeof destination === "string" ? destination : destination.href
-  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/"
+
+  // Determine if the destination is a folder page (slug ends with "index") or a file page.
+  // Folder pages need a trailing slash so "../" resolves correctly (e.g., /blog/posts/ + ../about = /blog/about).
+  // File pages must NOT have a trailing slash so "./" resolves correctly (e.g., /blog/subscribe + ./about = /blog/about).
+  const slug = (el as Document).querySelector?.("[data-slug]")?.getAttribute("data-slug") ?? ""
+  const isFolder = slug.endsWith("index") || slug === ""
+  const normalizedBase = isFolder
+    ? baseUrl.endsWith("/") ? baseUrl : baseUrl + "/"
+    : baseUrl.replace(/\/+$/, "")
 
   el.querySelectorAll('[href=""], [href^="./"], [href^="../"]').forEach((item) =>
     _rebaseHtmlElement(item, "href", normalizedBase),
