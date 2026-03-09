@@ -4,7 +4,7 @@ title: My projects
 
 A selection of my most recently active open source work. Most of it lives on [GitHub](https://github.com/skryl).
 
-## Blogs
+## Writing
 
 **[Skryl](/)** -- My personal blog on software, hardware, and everything in between. Also on [Substack](https://skryl.substack.com) · [Subscribe](https://skryl.substack.com/subscribe)
 
