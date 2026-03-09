@@ -17,7 +17,7 @@ const config: QuartzConfig = {
         { title: "All posts", slug: "/posts" },
         { title: "About me", slug: "/about" },
         { title: "My projects", slug: "/research" },
-        { title: "Subscribe", slug: "/subscribe" },
+        { title: "Subscribe", slug: "https://skryl.substack.com/subscribe" },
       ],
     },
     theme: {
