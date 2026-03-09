@@ -31,12 +31,14 @@ export default ((userOpts?: Partial<NavbarOptions>) => {
       cfg.navbar && "pages" in cfg.navbar ? (cfg.navbar.pages as NavPage[]) : opts.pages
 
     const navLinks = pages.map((page) => {
-      const isCurrent = currentSlug === (page.slug.replace(/^\//, "") as FullSlug)
+      const isExternal = page.slug.startsWith("http://") || page.slug.startsWith("https://")
+      const isCurrent = !isExternal && currentSlug === (page.slug.replace(/^\//, "") as FullSlug)
       return (
         <li>
           <a
-            href={resolveRelative(currentSlug, page.slug as FullSlug)}
-            class={`internal${isCurrent ? " active" : ""}`}
+            href={isExternal ? page.slug : resolveRelative(currentSlug, page.slug as FullSlug)}
+            class={isExternal ? "external" : `internal${isCurrent ? " active" : ""}`}
+            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             {page.title}
           </a>
