@@ -25,6 +25,11 @@ body {
 // -- Content width --
 .center {
   max-width: 750px;
+
+  // Align main content start with sidebar title
+  & > .page-header {
+    margin-top: 3rem;
+  }
 }
 
 // -- Headings --
