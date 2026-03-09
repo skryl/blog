@@ -1,23 +1,51 @@
 @use "../../styles/variables.scss" as *;
 
 .backlinks {
-  flex-direction: column;
+  cursor: pointer;
 
-  & > h3 {
-    font-size: 1rem;
-    margin: 0;
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
   }
 
-  & > ul.overflow {
+  .backlinks-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+
+    svg {
+      flex-shrink: 0;
+      color: var(--darkgray);
+    }
+  }
+
+  .backlinks-chevron {
+    color: var(--gray);
+    transition: transform 0.2s ease;
+  }
+
+  &[open] .backlinks-chevron {
+    transform: rotate(90deg);
+  }
+
+  .backlinks-list {
     list-style: none;
     padding: 0;
-    margin: 0.5rem 0;
-    max-height: calc(100% - 2rem);
-    overscroll-behavior: contain;
+    margin: 0.5rem 0 0;
 
-    & > li {
-      & > a {
-        background-color: transparent;
+    li {
+      margin-top: 0.25rem;
+
+      a {
+        font-size: 0.9rem;
+        background: none;
       }
     }
   }

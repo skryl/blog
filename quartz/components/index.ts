@@ -24,6 +24,8 @@ import Comments from "./Comments"
 import Flex from "./Flex"
 import ConditionalRender from "./ConditionalRender"
 import Navbar from "./Navbar"
+import SequenceNav from "./SequenceNav"
+import TagsSidebar from "./TagsSidebar"
 
 export {
   ArticleTitle,
@@ -52,4 +54,6 @@ export {
   Flex,
   ConditionalRender,
   Navbar,
+  SequenceNav,
+  TagsSidebar,
 }

@@ -1,5 +1,5 @@
-.content-meta {
-  .content-meta-header {
+.tags-sidebar {
+  .tags-sidebar-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -12,19 +12,23 @@
     }
   }
 
-  .content-meta-list {
+  .tags-sidebar-list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    font-size: 0.9rem;
-    color: var(--darkgray);
 
-    li a.internal {
-      text-decoration: underline;
+    li a {
+      font-family: var(--codeFont);
+      font-size: 0.85rem;
+      color: var(--darkgray);
       background: none;
+
+      &:hover {
+        color: var(--secondary);
+      }
     }
   }
 }
