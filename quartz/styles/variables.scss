@@ -2,11 +2,11 @@
 
 /**
  * Layout breakpoints matching turntrout.com style
- * Left sidebar: 200px, center: 750px max, right sidebar: 330px
+ * Left sidebar: 280px, center: 750px max, right sidebar: 330px
  */
 $breakpoints: (
   mobile: 800px,
-  desktop: 1304px,
+  desktop: 1400px,
 );
 
 $mobile: "(max-width: #{map.get($breakpoints, mobile)})";
@@ -14,7 +14,7 @@ $tablet: "(min-width: #{map.get($breakpoints, mobile)}) and (max-width: #{map.ge
 $desktop: "(min-width: #{map.get($breakpoints, desktop)})";
 
 $pageWidth: 750px;
-$sidePanelWidth: 200px;
+$sidePanelWidth: 280px;
 $rightSidebarWidth: 330px;
 $topSpacing: 2rem;
 $boldWeight: 700;
