@@ -75,23 +75,6 @@ export default ((userOpts?: Partial<NavbarOptions>) => {
             </button>
           </div>
         </div>
-        <div id="navbar-right">
-          <button
-            id="menu-button"
-            type="button"
-            class="mobile-only"
-            aria-label="Open navigation menu"
-            aria-expanded="false"
-            aria-controls="nav-menu"
-          >
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </button>
-          <nav class="menu" id="nav-menu">
-            <ul>{navLinks}</ul>
-          </nav>
-        </div>
         <div id="social-links">
           <a href="https://x.com/ssskryl" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
@@ -108,6 +91,23 @@ export default ((userOpts?: Partial<NavbarOptions>) => {
               <path d="M22.539 8.242H1.46V5.406h21.08zM1.46 10.812V24L12 18.11 22.54 24V10.812zM22.54 0H1.46v2.836h21.08z" />
             </svg>
           </a>
+        </div>
+        <div id="navbar-right">
+          <button
+            id="menu-button"
+            type="button"
+            class="mobile-only"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+            aria-controls="nav-menu"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <nav class="menu" id="nav-menu">
+            <ul>{navLinks}</ul>
+          </nav>
         </div>
       </div>
     )
