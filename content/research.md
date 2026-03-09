@@ -4,6 +4,12 @@ title: My projects
 
 A selection of my most recently active open source work. Most of it lives on [GitHub](https://github.com/skryl).
 
+## Blogs
+
+**[Skryl](/)** -- My personal blog on software, hardware, and everything in between. Also on [Substack](https://skryl.substack.com) · [Subscribe](https://skryl.substack.com/subscribe)
+
+**[CIRCT](https://circt.io/blog/)** -- A blog covering the Circuit IR Compilers and Tools ecosystem. Also on [Substack](https://circt.substack.com) · [Subscribe](https://circt.substack.com/subscribe)
+
 ## Hardware and compilers
 
 **[rhdl](https://github.com/skryl/rhdl)** -- A hardware description language and simulator written in Ruby. Design digital circuits in a Ruby DSL, simulate them, synthesize to gate-level netlists, and export to Verilog. Includes browser-based simulation and example designs for the MOS 6502, Apple II, Game Boy, and RISC-V.
