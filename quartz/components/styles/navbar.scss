@@ -3,7 +3,7 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.5rem;
   width: 100%;
   padding: 1rem 0;
@@ -12,7 +12,7 @@
 #navbar-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.5rem;
   width: 100%;
 }
@@ -32,7 +32,7 @@
 #navbar-left .page-title {
   font-size: 1.75rem;
   margin: 0;
-  text-align: center;
+  text-align: right;
   font-family: var(--titleFont);
 }
 
@@ -110,6 +110,7 @@
   font-weight: 500;
   color: var(--darkgray);
   background: none;
+  text-align: right;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 

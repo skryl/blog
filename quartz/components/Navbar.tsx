@@ -56,7 +56,7 @@ export default ((userOpts?: Partial<NavbarOptions>) => {
             </a>
           </h2>
           <span id="darkmode-span" class="no-select">
-            <button id="theme-toggle" type="button" aria-label="Toggle theme">
+            <button id="theme-toggle" class="darkmode" type="button" aria-label="Toggle theme">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="dayIcon"
