@@ -2,9 +2,9 @@
 title: Welcome
 ---
 
-Hello, and welcome to **Skryl** — a space for long-form writing on software, machine learning, and the craft of building things well.
+Hello, and welcome. This is my space for long-form writing on software, hardware, machine learning, and the craft of building things well.
 
-I write about the tools I use, the problems I find interesting, and the ideas that stay with me. Mostly this means Ruby, systems programming, and the intersection of classical software engineering with modern ML.
+I write about my projects, the tools I use, the problems I find interesting, and the ideas that stay with me. Mostly this means Ruby, hardware design, systems programming, and the intersection of classical software engineering with modern ML.
 
 ## Start here
 
