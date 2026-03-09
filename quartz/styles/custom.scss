@@ -28,8 +28,9 @@ body {
 }
 
 // Align main content start with sidebar title
+// Sidebar has $topSpacing (2rem) padding + navbar 1rem padding
 .page > #quartz-body .page-header {
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 
 // -- Headings --
