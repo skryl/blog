@@ -103,12 +103,16 @@ function curlFetch(url: string, timeoutMs: number): SimpleResponse {
 /** Extract all href values from an HTML string */
 function extractLinks(html: string, pageUrl: string): string[] {
   const links: string[] = []
-  const hrefRegex = /href=["']([^"']+)["']/g
+  // Match the tag context around each href to filter out non-navigable links
+  const hrefRegex = /(<[^>]*?)href=["']([^"']+)["']/g
   let match: RegExpExecArray | null
   while ((match = hrefRegex.exec(html)) !== null) {
-    const href = match[1]
+    const tagPrefix = match[1]
+    const href = match[2]
     // Skip anchors, mailto, tel, javascript, data URIs
     if (/^(#|mailto:|tel:|javascript:|data:)/.test(href)) continue
+    // Skip preconnect and dns-prefetch link tags (not navigable pages)
+    if (/rel=["'](preconnect|dns-prefetch)["']/.test(tagPrefix)) continue
     try {
       const resolved = new URL(href, pageUrl).href
       links.push(resolved)
