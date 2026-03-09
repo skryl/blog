@@ -3,7 +3,7 @@ import * as Plugin from "./quartz/plugins"
 
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Circt",
+    pageTitle: "Skryl",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -24,9 +24,9 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "JetBrains Mono",
-        body: "Inter",
-        code: "JetBrains Mono",
+        header: "EB Garamond",
+        body: "EB Garamond",
+        code: "Fira Code",
       },
       colors: {
         lightMode: {

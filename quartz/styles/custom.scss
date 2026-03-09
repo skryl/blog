@@ -6,18 +6,16 @@
 
 // -- Typography --
 html {
-  font-size: 17px;
+  font-size: 19px;
   text-rendering: geometricprecision;
-  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  line-height: 1.7;
+  line-height: 1.8rem;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
   hyphens: none;
-  letter-spacing: -0.01em;
 }
 
 // -- Content width --
@@ -32,37 +30,36 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   margin-top: 1.5rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-top: 2rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--lightgray);
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
 }
 
 // -- Drop cap on first paragraph --
 article > .article-content > p:first-of-type::first-letter {
-  font-size: 3.5rem;
+  font-size: 3.95rem;
   float: left;
   line-height: 0.8;
-  margin-right: 0.1em;
+  margin-right: 0.08em;
   padding-top: 0.15rem;
-  font-weight: 700;
-  font-family: var(--headerFont);
+  font-weight: 600;
   color: var(--secondary);
-  min-height: 3.8rem;
+  min-height: 4.2rem;
 }
 
 // -- Links --
@@ -92,8 +89,7 @@ pre {
 }
 
 code {
-  font-size: 0.85em;
-  font-variant-ligatures: contextual;
+  font-size: 0.88em;
 }
 
 // -- Images --
@@ -113,10 +109,10 @@ a.tag-link {
 
 // -- Page title in sidebar --
 .page-title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  text-align: right;
-  letter-spacing: -0.03em;
+  text-align: left;
+  letter-spacing: -0.01em;
 }
 
 // -- Sidebar card shared style --
@@ -233,11 +229,11 @@ th {
   }
 
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 
   img {
@@ -245,8 +241,8 @@ th {
   }
 
   article > .article-content > p:first-of-type::first-letter {
-    font-size: 2.8rem;
-    min-height: 3rem;
+    font-size: 3.2rem;
+    min-height: 3.4rem;
   }
 }
 

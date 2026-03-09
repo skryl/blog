@@ -3,7 +3,7 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.5rem;
   width: 100%;
   padding: 1rem 0;
@@ -12,7 +12,7 @@
 #navbar-left {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.5rem;
   width: 100%;
 }
@@ -20,7 +20,7 @@
 #title-row {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 0.5rem;
   width: 100%;
 }
@@ -38,11 +38,11 @@
 }
 
 #navbar-left .page-title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin: 0;
-  text-align: right;
+  text-align: left;
   font-family: var(--headerFont);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
 }
 
 #navbar-left .page-title a {
@@ -56,15 +56,17 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  height: 1.5rem;
 }
 
 #theme-toggle svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: var(--gray);
   transition: fill 0.2s ease;
 }
@@ -115,7 +117,7 @@
   font-weight: 500;
   color: var(--darkgray);
   background: none;
-  text-align: right;
+  text-align: left;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 

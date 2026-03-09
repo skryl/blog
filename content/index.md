@@ -2,7 +2,7 @@
 title: Welcome
 ---
 
-Hello, and welcome to **Circt** — a space for long-form writing on software, machine learning, and the craft of building things well.
+Hello, and welcome to **Skryl** — a space for long-form writing on software, machine learning, and the craft of building things well.
 
 I write about the tools I use, the problems I find interesting, and the ideas that stay with me. Mostly this means Ruby, systems programming, and the intersection of classical software engineering with modern ML.
 
