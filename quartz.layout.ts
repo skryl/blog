@@ -24,9 +24,8 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Navbar({
       pages: [
         { title: "About me", slug: "/about" },
-        { title: "My research", slug: "/research" },
+        { title: "My projects", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Open source", slug: "/open-source" },
         { title: "Subscribe", slug: "/subscribe" },
       ],
     }),
@@ -49,9 +48,8 @@ export const defaultListPageLayout: PageLayout = {
     Component.Navbar({
       pages: [
         { title: "About me", slug: "/about" },
-        { title: "My research", slug: "/research" },
+        { title: "My projects", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Open source", slug: "/open-source" },
         { title: "Subscribe", slug: "/subscribe" },
       ],
     }),

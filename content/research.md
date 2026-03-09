@@ -1,5 +1,5 @@
 ---
-title: My research
+title: My projects
 ---
 
-My research interests and projects.
+My projects and research interests.
