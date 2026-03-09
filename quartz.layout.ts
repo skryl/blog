@@ -23,14 +23,20 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.Navbar({
       pages: [
+        { title: "All posts", slug: "/posts" },
         { title: "About me", slug: "/about" },
         { title: "My projects", slug: "/research" },
-        { title: "All posts", slug: "/posts" },
         { title: "Subscribe", slug: "/subscribe" },
       ],
     }),
     Component.Search(),
-    Component.Explorer(),
+    Component.Explorer({
+      mapFn: (node) => {
+        if (node.displayName === "posts") {
+          node.displayName = "All posts"
+        }
+      },
+    }),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
@@ -47,14 +53,20 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.Navbar({
       pages: [
+        { title: "All posts", slug: "/posts" },
         { title: "About me", slug: "/about" },
         { title: "My projects", slug: "/research" },
-        { title: "All posts", slug: "/posts" },
         { title: "Subscribe", slug: "/subscribe" },
       ],
     }),
     Component.Search(),
-    Component.Explorer(),
+    Component.Explorer({
+      mapFn: (node) => {
+        if (node.displayName === "posts") {
+          node.displayName = "All posts"
+        }
+      },
+    }),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
