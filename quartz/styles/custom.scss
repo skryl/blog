@@ -6,16 +6,18 @@
 
 // -- Typography --
 html {
-  font-size: 19px;
+  font-size: 17px;
   text-rendering: geometricprecision;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  line-height: 1.8rem;
+  line-height: 1.7;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
   hyphens: none;
+  letter-spacing: -0.01em;
 }
 
 // -- Content width --
@@ -30,36 +32,37 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   margin-top: 1.5rem;
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-top: 2rem;
   padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--lightgray);
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
 }
 
 // -- Drop cap on first paragraph --
 article > .article-content > p:first-of-type::first-letter {
-  font-size: 3.95rem;
+  font-size: 3.5rem;
   float: left;
   line-height: 0.8;
-  margin-right: 0.08em;
+  margin-right: 0.1em;
   padding-top: 0.15rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: var(--headerFont);
   color: var(--secondary);
-  min-height: 4.2rem;
+  min-height: 3.8rem;
 }
 
 // -- Links --
@@ -84,12 +87,13 @@ blockquote {
 
 // -- Code blocks --
 pre {
-  border-radius: 5px;
+  border-radius: 6px;
   border: 1px solid var(--lightgray);
 }
 
 code {
-  font-size: 0.88em;
+  font-size: 0.85em;
+  font-variant-ligatures: contextual;
 }
 
 // -- Images --
@@ -109,9 +113,10 @@ a.tag-link {
 
 // -- Page title in sidebar --
 .page-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   text-align: right;
+  letter-spacing: -0.03em;
 }
 
 // -- Sidebar card shared style --
@@ -228,11 +233,11 @@ th {
   }
 
   h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
   }
 
   img {
@@ -240,8 +245,8 @@ th {
   }
 
   article > .article-content > p:first-of-type::first-letter {
-    font-size: 3.2rem;
-    min-height: 3.4rem;
+    font-size: 2.8rem;
+    min-height: 3rem;
   }
 }
 

@@ -12,4 +12,4 @@ On the technical side, my roots are in Ruby and Rails, but my interests have dri
 
 Outside of work, I read a lot — somewhere north of 600 books on Goodreads at last count. I have a soft spot for mechanical keyboards, which I've written about before, and I run enough to justify building a REST client for the Nike+ API. I collect ideas across too many notebooks and occasionally manage to turn them into something useful.
 
-This blog is called The Pond because that's what it is — a place to sit with ideas for a while and see what surfaces.
+This blog is called Circt — short for circuit. It's a space where ideas connect, loop back, and sometimes spark something new.
