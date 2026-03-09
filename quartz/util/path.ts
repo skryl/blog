@@ -115,11 +115,16 @@ const _rebaseHtmlElement = (el: Element, attr: string, newBase: string | URL) =>
   el.setAttribute(attr, rebased.pathname + rebased.hash)
 }
 export function normalizeRelativeURLs(el: Element | Document, destination: string | URL) {
+  // Ensure the base URL ends with a trailing slash for correct relative resolution.
+  // Without it, "posts" is treated as a file, so "../" resolves one level too high.
+  const baseUrl = typeof destination === "string" ? destination : destination.href
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/"
+
   el.querySelectorAll('[href=""], [href^="./"], [href^="../"]').forEach((item) =>
-    _rebaseHtmlElement(item, "href", destination),
+    _rebaseHtmlElement(item, "href", normalizedBase),
   )
   el.querySelectorAll('[src=""], [src^="./"], [src^="../"]').forEach((item) =>
-    _rebaseHtmlElement(item, "src", destination),
+    _rebaseHtmlElement(item, "src", normalizedBase),
   )
 }
 
