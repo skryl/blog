@@ -14,10 +14,9 @@ const config: QuartzConfig = {
     defaultDateType: "published",
     navbar: {
       pages: [
-        { title: "About me", slug: "/about" },
-        { title: "My research", slug: "/research" },
         { title: "All posts", slug: "/posts" },
-        { title: "Open source", slug: "/open-source" },
+        { title: "About me", slug: "/about" },
+        { title: "My projects", slug: "/research" },
         { title: "Subscribe", slug: "/subscribe" },
       ],
     },
