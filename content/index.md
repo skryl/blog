@@ -9,7 +9,6 @@ I write about my projects, the tools I use, the problems I find interesting, and
 ## Start here
 
 - [[posts/ruby-deserves-ml|Ruby Finally Gets a Real Machine Learning Framework]]
-- [[posts/why-i-write|Why I Write]]
 
 ## Or dive in
 
