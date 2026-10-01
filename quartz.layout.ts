@@ -30,13 +30,15 @@ export const defaultContentPageLayout: PageLayout = {
       ],
     }),
     Component.Search(),
-    Component.Explorer({
-      mapFn: (node) => {
-        if (node.displayName === "posts") {
-          node.displayName = "All posts"
-        }
-      },
-    }),
+    Component.DesktopOnly(
+      Component.Explorer({
+        mapFn: (node) => {
+          if (node.displayName === "posts") {
+            node.displayName = "All posts"
+          }
+        },
+      }),
+    ),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),
@@ -60,13 +62,15 @@ export const defaultListPageLayout: PageLayout = {
       ],
     }),
     Component.Search(),
-    Component.Explorer({
-      mapFn: (node) => {
-        if (node.displayName === "posts") {
-          node.displayName = "All posts"
-        }
-      },
-    }),
+    Component.DesktopOnly(
+      Component.Explorer({
+        mapFn: (node) => {
+          if (node.displayName === "posts") {
+            node.displayName = "All posts"
+          }
+        },
+      }),
+    ),
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),

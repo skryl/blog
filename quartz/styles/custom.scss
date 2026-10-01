@@ -226,6 +226,18 @@ th {
 
   .page {
     & > #quartz-body {
+      // Keep wide content (e.g. code blocks) from stretching the column past the viewport
+      grid-template-columns: minmax(0, 1fr);
+
+      // Stack sidebar cards instead of squeezing them into one row
+      & .sidebar.right {
+        flex-direction: column;
+
+        & > * {
+          flex: none;
+        }
+      }
+
       & .sidebar.left {
         position: sticky;
         top: 0;
@@ -234,6 +246,28 @@ th {
         border-bottom: 1px solid var(--lightgray);
         padding: 0;
         height: auto;
+
+        // Collapse search to an icon so the header fits on narrow screens
+        & .search {
+          min-width: 0;
+          flex-grow: 0;
+
+          & > .search-button {
+            border: none;
+            padding: 4px;
+            width: auto;
+
+            & > p {
+              display: none;
+            }
+
+            & svg {
+              width: 20px;
+              height: 20px;
+              margin: 0;
+            }
+          }
+        }
       }
     }
   }
