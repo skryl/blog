@@ -16,8 +16,8 @@ Neither option was great. The first meant abandoning a language you love. The
 second meant living with sparse documentation, broken builds, and APIs that
 felt foreign in Ruby.
 
-I finally sat down and ported [MLX](https://github.com/ml-explore/mlx) --
-Apple's array framework designed for machine learning on Apple silicon -- to
+I finally sat down and ported [MLX](https://github.com/ml-explore/mlx),
+Apple's array framework designed for machine learning on Apple silicon, to
 Ruby. The result is
 [mlx-ruby](https://github.com/skryl/mlx-ruby): a native C++ extension that
 gives Ruby lazy-evaluated arrays, automatic differentiation, a full neural
@@ -34,24 +34,24 @@ didn't win because of its syntax. It won because the libraries existed.
 Ruby, meanwhile, has had scattered attempts. NMatrix came and went. Numo::NArray
 works for basic numerics but has no autodiff, no GPU support, no neural network
 abstractions. Torch.rb wraps LibTorch through FFI, which is viable but means
-inheriting PyTorch's design decisions wholesale -- a C++ API shaped by Python
+inheriting PyTorch's design decisions wholesale: a C++ API shaped by Python
 conventions, adapted back into Ruby through a foreign function interface. Every
 layer of indirection costs you something in ergonomics.
 
 The core problem was never that Ruby couldn't do math. It's that nobody built
 the full stack: arrays, differentiation, compilation, neural network modules,
-optimizers, and serialization -- all designed together, with Ruby's strengths in
+optimizers, and serialization, all designed together, with Ruby's strengths in
 mind.
 
 ## Why Ruby Is Actually Good at This
 
 Ruby gets dismissed for ML work as "too slow" or "not serious enough." But the
-actual model-definition work in any ML framework isn't about raw loop speed --
+actual model-definition work in any ML framework isn't about raw loop speed;
 it's about expressing architecture. You're composing layers, defining forward
 passes, specifying loss functions. The heavy computation happens in C++/Metal/CUDA
 kernels regardless of which language you write your model definition in.
 
-And for the *expressive* part -- the part where you actually design things --
+And for the *expressive* part (the part where you actually design things),
 Ruby is exceptional. Consider what a trainable model looks like:
 
 ```ruby
@@ -102,12 +102,12 @@ I chose MLX as the foundation for a few reasons.
 
 **Clean C++ core.** MLX was designed from scratch by Apple's ML research team.
 The C++ API is modern (C++20), well-factored, and doesn't carry decades of
-backward-compatibility debt. Binding to it directly is tractable -- the native
+backward-compatibility debt. Binding to it directly is tractable: the native
 extension is about 8,000 lines of C++, which is manageable for one person.
 
 **Lazy evaluation.** MLX arrays aren't computed until you need them. This means
 you can build arbitrarily large computation graphs without materializing
-intermediate results. It also makes automatic differentiation natural -- the
+intermediate results. It also makes automatic differentiation natural, since the
 graph is already there.
 
 **Unified memory.** On Apple silicon, MLX operates on unified CPU/GPU memory.
@@ -115,13 +115,13 @@ No explicit transfers, no `tensor.to("cuda")`. You write your code and it runs
 where it should. On Linux, the CPU backend works the same way.
 
 **Composable transforms.** MLX treats `grad`, `vmap`, `jvp`, `vjp`, and
-`compile` as function transforms -- higher-order functions that take a function
+`compile` as function transforms: higher-order functions that take a function
 and return a new function. This maps perfectly to Ruby's lambda/proc model.
 
 ## Metal, Unified Memory, and the GPU
 
 The performance story of mlx-ruby is really the performance story of MLX
-itself -- and that story starts with Apple silicon's unified memory
+itself, and that story starts with Apple silicon's unified memory
 architecture.
 
 ### No More `tensor.to("cuda")`
@@ -129,7 +129,7 @@ architecture.
 In PyTorch, moving data between CPU and GPU is explicit and error-prone. You
 allocate a tensor, call `.to("cuda")` to copy it to the GPU, do your work,
 then copy results back. Forget a transfer and you get a cryptic device mismatch
-error. On Apple silicon, MLX doesn't need any of this -- CPU and GPU share the
+error. On Apple silicon, MLX doesn't need any of this. CPU and GPU share the
 same physical memory. An array created on one device is immediately accessible
 to the other:
 
@@ -143,7 +143,7 @@ mx.stream(mx.gpu) { mx.add(a, a) }   # runs on GPU
 
 There's no serialization, no PCIe bottleneck, no `cudaMemcpy`. The array
 lives in unified memory and both processors see it directly. MLX handles
-cross-device dependencies automatically -- if a GPU operation depends on a
+cross-device dependencies automatically. If a GPU operation depends on a
 CPU result, MLX ensures the CPU work finishes first without you writing
 synchronization code.
 
@@ -189,13 +189,13 @@ end
 ```
 
 On an M1 Max, this mixed approach runs in about 1.4ms compared to 2.8ms for
-GPU-only execution -- a 2x speedup from letting both processors work
+GPU-only execution, a 2x speedup from letting both processors work
 simultaneously. MLX's lazy evaluation and automatic dependency tracking make
 this safe without manual synchronization.
 
 ### Lazy Evaluation and Async Execution
 
-Nothing computes until you say so. This isn't just an implementation detail --
+Nothing computes until you say so. This isn't just an implementation detail;
 it's a performance strategy. You build an arbitrarily large computation graph,
 and MLX optimizes and executes it as a unit:
 
@@ -218,8 +218,8 @@ mx.async_eval(model.parameters)  # returns immediately
 ```
 
 Critically, both `eval` and `async_eval` release Ruby's Global VM Lock (GVL)
-during computation. This means other Ruby threads -- serving HTTP requests,
-processing IO, running background jobs -- continue unblocked while the GPU
+during computation. This means other Ruby threads (serving HTTP requests,
+processing IO, running background jobs) continue unblocked while the GPU
 works. Your ML pipeline doesn't freeze your application.
 
 ### Custom Metal Kernels
@@ -247,7 +247,7 @@ outputs = kernel.call(
 ```
 
 This is the same API that the upstream MLX project uses for fused kernels.
-The performance gains are real -- a custom grid-sample kernel on an M1 Max runs
+The performance gains are real: a custom grid-sample kernel on an M1 Max runs
 **8.3x faster** on the forward pass and **40.5x faster** on the backward pass
 compared to the equivalent composition of standard MLX primitives. Having this
 escape hatch available from Ruby means you're never stuck at a performance
@@ -295,7 +295,7 @@ p y.to_a  # => [1.414..., 1.732..., 2.0]
 ### Function Transforms
 
 Automatic differentiation, vectorized mapping, JIT compilation, and
-checkpointing -- all as composable function transforms:
+checkpointing, all as composable function transforms:
 
 ```ruby
 grad_fn    = mx.grad(loss_fn)
@@ -329,7 +329,7 @@ schedules).
 ### Loss Functions
 
 `cross_entropy`, `binary_cross_entropy`, `l1_loss`, `mse_loss`,
-`smooth_l1_loss`, `kl_div_loss` -- all with configurable reduction.
+`smooth_l1_loss`, `kl_div_loss`, all with configurable reduction.
 
 ### Serialization
 
@@ -343,7 +343,7 @@ model.load_weights("model.safetensors", strict: true)
 
 ## A Real Example: Nano GPT in Ruby
 
-Here's a Karpathy-style GPT defined in Ruby. This isn't pseudocode -- it runs:
+Here's a Karpathy-style GPT defined in Ruby. This isn't pseudocode; it runs:
 
 ```ruby
 class NanoGpt < MLX::NN::Module
@@ -408,13 +408,13 @@ Gradients flow through lambdas.
 
 This is a v1.0 release. The parity test suite runs 300+ tests comparing Ruby
 output against the upstream Python MLX implementation. Benchmarks cover
-transformers, CNNs, MLPs, RNNs, and a full Karpathy GPT-2 training loop --
+transformers, CNNs, MLPs, RNNs, and a full Karpathy GPT-2 training loop,
 all runnable against both Ruby and Python to verify there's no meaningful
 performance gap from the language binding.
 
 Ruby developers have built extraordinary things: Rails changed how the world
 builds web applications. The language's emphasis on developer happiness and
-expressive power isn't a liability for serious computing -- it's an asset.
+expressive power isn't a liability for serious computing. It's an asset.
 
 The reason Ruby hasn't been used for ML isn't that it can't express these ideas
 well. It's that nobody built the infrastructure. MLX Ruby is that
@@ -422,7 +422,7 @@ infrastructure: a complete, native, GPU-accelerated machine learning framework
 that treats Ruby as a first-class citizen.
 
 If you've ever wanted to train a model, experiment with neural architectures,
-or run LLM inference without leaving Ruby -- now you can.
+or run LLM inference without leaving Ruby, now you can.
 
 ```bash
 gem install mlx
