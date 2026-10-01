@@ -2,7 +2,7 @@
 title: About me
 ---
 
-I'm Alex Skryl — engineer, founder, and builder.
+I'm Alex Skryl: engineer, founder, and builder.
 
 This blog is where I write about the things I'm building, learning, and trying to understand more deeply. A lot of that comes from a career spent turning ideas into products, growing teams and systems, and working at the intersection of technology and real-world outcomes.
 
